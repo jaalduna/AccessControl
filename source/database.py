@@ -1,6 +1,14 @@
 import sqlite3 as lite
 import sys
 import texttable as tt
+from time import gmtime, strftime
+
+#LOG_CARD_NOT_FOUND = 1
+#LOG_CARD_NOT_ASSIGNED = 2
+#LOG_USER_DISABLED = 3
+#LOG_ACCESS_SUCCED = 4
+#LOG_APERTURA_MANUAL = 5
+
 
 class  database(object):
     def __init__(self,db_name = "database.db"):
@@ -19,6 +27,14 @@ class  database(object):
             cur = con.cursor()
             cur.execute("DROP TABLE IF EXISTS Users")
             cur.execute("CREATE TABLE Users(Id INTEGER PRIMARY KEY, Nombre TEXT, Apellido TEXT, Rut TEXT, Habilitado INT)") 
+
+    def create_log_table(self):
+        con = lite.connect(self.db_name)
+        with con:
+            cur = con.cursor()
+            cur.execute("DROP TABLE IF EXISTS Log")
+            cur.execute("CREATE TABLE log(Id Integer PRIMARY KEY, LogId, Date TEXT, Details TEXT)")
+
 
     def add_card(self,card_number):
         con = lite.connect(self.db_name)
@@ -132,6 +148,33 @@ class  database(object):
             tab.set_cols_width([10,10,10,10,10])
             tab.set_cols_dtype(["t", "t","t","t","t"])
             print tab.draw() 
+
+    def show_log_table(self):
+        con = lite.connect(self.db_name)
+        tab = tt.Texttable() #texttable object
+        with con:
+            cur = con.cursor()
+            cur.execute("SELECT * FROM Log")
+            col_names = [cn[0] for cn in cur.description]
+            tab.header(col_names)
+            rows = cur.fetchall()
+            for row in rows:
+                tab.add_row(row)  
+
+            tab.set_cols_width([8,8,20,70])
+            tab.set_cols_dtype(["t", "t","t","t"])
+            print tab.draw() 
+
+
+    def log(self,LogId,details):
+        con = lite.connect(self.db_name)
+        date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+        with con:
+            cur = con.cursor()
+            cur.execute("INSERT INTO Log(Date,LogId,Details) VALUES (?,?,?)", ((date,LogId,details)))
+            con.commit()
+            print "Numero de registro: %d" %cur.lastrowid
+
     def validate_user(self,card_number):
         con = lite.connect(self.db_name)
         with con:
@@ -139,7 +182,10 @@ class  database(object):
             cur.execute("SELECT * FROM Cards WHERE Number=:Number",{"Number":card_number})
             row = cur.fetchone()
             if(row == None):
-                print "card not present in database" 
+                print "card not present in database"
+                self.log(1, str("Card %s not present in database"% card_number))
+
+
                 return 0
             else:
                 if(row[3] == -1):
@@ -158,5 +204,5 @@ class  database(object):
                     else:
                         print "Access succeded"
                         return 1
-                        
+                            
 

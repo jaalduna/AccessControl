@@ -21,5 +21,6 @@ class tarjeta(object):
     def get_code(self):
         while len(self.id_number) < self.id_number_length:
             time.sleep(0.1)
+        print self.id_number
 
 

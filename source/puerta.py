@@ -9,7 +9,7 @@ class puerta(object):
     #open: open the doopuertar
     def open(self):
        GPIO.output(self.port,1)
-       time.sleep(1)
+       time.sleep(self.time_open)
        GPIO.output(self.port,0)
     #close: close the door
     def close(self):
