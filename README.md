@@ -21,10 +21,11 @@ The Access Control system logs diferent events. Them are classified as
 11. Tarjeta Modificada:
 12. Tarjeta eliminada
 
-Data required for the log regiters: 
-tarjeta.id_number
-tarjet
+## Estructura del proyecto
 
+El proyecto posee scripts python para implementar los drivers con los dispositivos y una aplicación web en php para implementar la gui. En la carpeta principal se encuentra este documento Readme.md, la carpeta source que contiene los scripts python y la carpeta webapp que contiene la aplicación web. dentro de webapp esta también la base de datos database.db
+
+ 
 
 todo:
 
