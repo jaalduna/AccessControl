@@ -14,6 +14,12 @@ The Access Control system logs diferent events. Them are classified as
 4. Access Success 
     Format: LogId, Date, time, Access Granted for user %s %s with user_id %s
 5. Apertura manual
+6. Usuario Registrado:
+7. Usuario Modificado:
+8. Usuario Eliminado:
+10. Tarjeta Agregada:
+11. Tarjeta Modificada:
+12. Tarjeta eliminada
 
 Data required for the log regiters: 
 tarjeta.id_number
