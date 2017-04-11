@@ -23,4 +23,4 @@ cp -r  ./source-webapp/ ./webapp/
 php ./webapp/artisan migrate:refresh
 
 #copy python scripts
-cp -r ./source ./webapp/scripts/
+cp -r ./python-scripts/ ./webapp/scripts/
