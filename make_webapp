@@ -19,6 +19,7 @@ touch ./webapp/database.db
 #copy source files in source-webapp into webapp
 cp -r  ./source-webapp/ ./webapp/
 
+
 #migrate the database
 php ./webapp/artisan migrate:refresh
 
