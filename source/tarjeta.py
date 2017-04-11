@@ -22,5 +22,6 @@ class tarjeta(object):
         while len(self.id_number) < self.id_number_length:
             time.sleep(0.1)
         print self.id_number
+        return self.id_number
 
 
