@@ -13,15 +13,18 @@ php composer.phar create-project laravel/laravel webapp
 #delete composer.phar
 rm composer.phar
 
-#create database.db (sqlite3)
-touch ./webapp/database.db
 
 #copy source files in source-webapp into webapp
-cp -r  ./source-webapp/ ./webapp/
+cp -rT  ./source-webapp ./webapp
 
-
-#migrate the database
+#migrate database again
 php ./webapp/artisan migrate:refresh
 
 #copy python scripts
-cp -r ./python-scripts/ ./webapp/scripts/
+cp -rT ./python-scripts ./webapp/scripts
+
+
+#Change owner for files needs to be modified by the app
+sudo chown -R www-data:www-data ./webapp/storage
+sudo chown  www-data:www-data ./webapp/database
+sudo chown  www-data:www-data ./webapp/database/database.sqlite
