@@ -25,7 +25,7 @@ from database import database #import database class
 #Create object Instances
 tarjeta1 =  tarjeta("",32)
 puerta1  =  puerta(0,TIME_OPEN,25)
-database1 = database("/var/www/webapp/database.db")
+database1 = database("../database/database.sqlite")
 
 
 #Attaching card reader pins to the card object tarjeta1
@@ -62,7 +62,14 @@ while menu !=4:
             print "esperando tarjeta ..."
             tarjeta1.get_code()
             
+            #save numer on Output.txt file 
+            print "guardando numero..."
+            f = open('./card_code.txt', 'w')
+            f.write(tarjeta1.id_number)
+            f.close();
+
             #Validate user
+            print "validando usuario"
             if(database1.validate_user(tarjeta1.id_number)):
                 puerta1.open()  
                 #log valid user entry

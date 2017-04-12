@@ -171,42 +171,41 @@ class  database(object):
         date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
         with con:
             cur = con.cursor()
-            cur.execute("INSERT INTO logs(code,details,created_at,updated_at) VALUES (?,?,?,?)", ((LogId,details,date,date)))
+            cur.execute("INSERT INTO logs(created_at,updated_at,log_id,content) VALUES (?,?,?,?)", ((date,date,LogId,details)))
             con.commit()
-            print "Numero de registro: %d" %cur.lastrowid
+            print "Id de log registrado: %d" %cur.lastrowid
 
     def validate_user(self,card_number):
         con = lite.connect(self.db_name)
         with con:
             cur = con.cursor()
-            cur.execute("SELECT * FROM tarjetas WHERE number=:Number",{"Number":card_number})
+            cur.execute("SELECT * FROM tarjetas WHERE card_id=:Number",{"Number":card_number})
             row = cur.fetchone()
             if(row == None):
                 print "card not present in database"
                 self.log(1, str("Tarjeta %s no presente en la base de datos"% card_number))
 
-
                 return 0
             else:
-                if(row[2] == -1):
+                if(row[4] == -1):
                     print "card not assigned"
                     self.log(2,str("Tarjeta %s no asignada"% card_number))
                     return 0
                 else:
-                    user_id = row[2]
+                    user_id = row[4]
                     cur.execute("SELECT * FROM usuarios WHERE id=:Id",{"Id":user_id})
                     row = cur.fetchone()
                     if(row == None):
                         print "User not found"
                         self.log(3,str("Usuario %s no encontrado"% user_id))
                         return 0
-                    elif(row[4] == 0):
+                    elif(row[6] == 0):
                         print "Access Denied"
                         self.log(4,str("Usuario %s no habilitado"% user_id))
                         return 0
                     else:
-                        self.log(5,str("Usuario %s ingresa"% user_id))
-                        print "Access succeded"
+                        self.log(5,str("Acceso autorizado a usuario %s "% user_id))
+                        print "Access granted"
                         return 1
                             
 

@@ -13,6 +13,12 @@
     border-spacing: 4px;
 }
 
+.tabla_logs{
+    width: 1200px;
+    border-spacing: 8px;
+}
+
+
 .input_user_id {
 	width: 50px;
 }

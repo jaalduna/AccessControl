@@ -18,7 +18,7 @@ class TarjetaController extends Controller
 
     public function create_card()
     {
-    	$filename = 'card_number.txt';
+    	$filename = '../scripts/card_code.txt';
 
     	$tarjeta = new Tarjeta;
 

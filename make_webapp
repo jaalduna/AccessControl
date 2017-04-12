@@ -28,3 +28,7 @@ cp -rT ./python-scripts ./webapp/scripts
 sudo chown -R www-data:www-data ./webapp/storage
 sudo chown  www-data:www-data ./webapp/database
 sudo chown  www-data:www-data ./webapp/database/database.sqlite
+sudo chmod  775 ./webapp/database
+sudo chmod  775 ./webapp/database/database.sqlite
+sudo chown -R  www-data:www-data ./webapp/scripts
+sudo chmod  775 -R ./webapp/scripts

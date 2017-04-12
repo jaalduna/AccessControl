@@ -7,7 +7,7 @@ Tabla de Logs
 
 <!-- Imprimir Usuarios desde la tabla-->
 
-    <table class="tabla_usuarios">
+    <table class="tabla_logs">
         <tr>
             <th>id</th>
             <th>Fecha</th>
