@@ -1,9 +1,9 @@
 # AccessControl 
 
-
 ## Event log types
 
 The Access Control system logs diferent events. Them are classified as
+
 
 1. Card not found
     Format: LogId, date, time, card number: %s not found in the database
@@ -25,7 +25,8 @@ The Access Control system logs diferent events. Them are classified as
 
 El proyecto posee scripts python para implementar los drivers con los dispositivos y una aplicación web en php para implementar la gui. En la carpeta principal se encuentra este documento Readme.md, la carpeta source que contiene los scripts python y la carpeta webapp que contiene la aplicación web. dentro de webapp esta también la base de datos database.db
 
- 
+#Limit registration functionalities 
+/var/www/AccessControl/webapp/vendor/laravel/framework/src/Illuminate/Routing
 
 todo:
 
