@@ -50,8 +50,9 @@ while menu !=4:
     print "3. Run"
     print "4. Exit"
     print ""
-    menu = input("Choose an option: ")
+#       menu = input("Choose an option: ")
      
+    menu = 3; #force to run
     if(menu == 4):
         print "cerrando programa"
     elif (menu == 3):
@@ -62,7 +63,7 @@ while menu !=4:
             print "esperando tarjeta ..."
             tarjeta1.get_code()
             
-            #save numer on Output.txt file 
+            #save number on card_code.txt file 
             print "guardando numero..."
             f = open('./card_code.txt', 'w')
             f.write(tarjeta1.id_number)
