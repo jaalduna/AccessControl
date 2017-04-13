@@ -34,7 +34,7 @@ GPIO.add_event_detect(CARD_READER_DATA1,GPIO.FALLING, callback=tarjeta1.function
 GPIO.add_event_detect(BUTTON, GPIO.FALLING, callback=lambda x: apertura_manual(),bouncetime =TIME_OPEN*1000+1000)
 
 def apertura_manual():
-    sleep(0.1);
+    time.sleep(0.1);
     if(GPIO.input(BUTTON) == 0 ):
     	database1.log(5,"Apertura Manual")
 	puerta1.open()
