@@ -38,6 +38,7 @@ def apertura_manual():
     if(GPIO.input(BUTTON) == 0 ):
     	database1.log(5,"Apertura Manual")
 	puerta1.open()
+    tarjeta1.id_number = "" #to avoid card not working after presenting 
         
 
 
