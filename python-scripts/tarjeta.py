@@ -19,6 +19,7 @@ class tarjeta(object):
             return 0
 
     def get_code(self):
+        self.id_number = ""; 
         while len(self.id_number) < self.id_number_length:
             time.sleep(0.1)
         print self.id_number
